@@ -4,7 +4,8 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "Mini Car": "github:keyestudio2019/MiniCar#85ada5185bcc42f7b65e1f8e931799e2ae3ccd22"
     },
     "files": [
         "main.blocks",
