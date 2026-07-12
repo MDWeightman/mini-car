@@ -1,13 +1,16 @@
-input.onSound(DetectedSound.Loud, function () {
-	
-})
-input.onSound(DetectedSound.Quiet, function () {
-	
-})
-irRemote.connectInfrared(DigitalPin.P16)
+irRemote.connectInfrared(DigitalPin.P0)
 music.play(music.builtinPlayableSoundEffect(soundExpression.hello), music.PlaybackMode.InBackground)
+music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Birthday), music.PlaybackMode.InBackground)
+basic.showString("Happy birthday")
+basic.showLeds(`
+    . # # # .
+    . . # . .
+    . . # . .
+    # . # . .
+    # # # . .
+    `)
 basic.forever(function () {
-    if (MiniCar.ultra() < 40) {
+    if (MiniCar.ultra() < 40 || irRemote.returnIrButton() == irRemote.irButton(IrButton.Ok)) {
         basic.showIcon(IconNames.No)
         MiniCar.led_rgb(LED_rgb_L_R.LED_R, LED_color.red1)
         MiniCar.led_rgb(LED_rgb_L_R.LED_L, LED_color.red1)
@@ -41,13 +44,6 @@ basic.forever(function () {
             MiniCar.led_rgb(LED_rgb_L_R.LED_L, LED_color.black)
             MiniCar.motor(Motorlist.M1, Direction1.Forward, 50)
             MiniCar.motor(Motorlist.M2, Direction1.Backward, 50)
-        }
-        while (irRemote.returnIrButton() == irRemote.irButton(IrButton.Ok)) {
-            basic.showIcon(IconNames.No)
-            MiniCar.led_rgb(LED_rgb_L_R.LED_R, LED_color.red1)
-            MiniCar.led_rgb(LED_rgb_L_R.LED_L, LED_color.red1)
-            MiniCar.motor(Motorlist.M1, Direction1.Forward, 0)
-            MiniCar.motor(Motorlist.M2, Direction1.Forward, 0)
         }
     }
 })
